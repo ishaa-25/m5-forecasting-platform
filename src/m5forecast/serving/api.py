@@ -21,7 +21,7 @@ from pydantic import BaseModel, Field
 logger = logging.getLogger(__name__)
 
 # ── Load config ────────────────────────────────────────────────────────────────
-CONFIG_PATH = Path(__file__).resolve().parents[4] / "configs" / "config.yaml"
+CONFIG_PATH = Path(__file__).resolve().parents[3] / "configs" / "config.yaml"
 with open(CONFIG_PATH) as fh:
     CONFIG = yaml.safe_load(fh)
 

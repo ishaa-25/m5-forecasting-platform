@@ -101,7 +101,7 @@ class ETSForecaster(Forecaster):
                 seasonal_periods=self.seasonal_periods,
                 damped_trend=self.damped_trend,
             )
-        self._fitted = model.fit(optimized=True, disp=False)
+        self._fitted = model.fit(optimized=True)
         residuals = self._fitted.resid
         self._residual_std = float(np.std(residuals))
         return self
@@ -187,7 +187,7 @@ if __name__ == "__main__":
 
     logging.basicConfig(level=logging.INFO, format="%(levelname)s  %(message)s")
 
-    processed = Path(__file__).resolve().parents[4] / "data" / "processed"
+    processed = Path(__file__).resolve().parents[3] / "data" / "processed"
     parquet = processed / "m5_long.parquet"
     if not parquet.exists():
         print("No processed data found. Run `make data` first.")

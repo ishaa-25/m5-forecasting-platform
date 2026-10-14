@@ -23,7 +23,7 @@ import yaml
 logger = logging.getLogger(__name__)
 
 # ── paths ──────────────────────────────────────────────────────────────────────
-ROOT = Path(__file__).resolve().parents[4]
+ROOT = Path(__file__).resolve().parents[3]
 CONFIG_PATH = ROOT / "configs" / "config.yaml"
 RAW = ROOT / "data" / "raw"
 PROCESSED = ROOT / "data" / "processed"

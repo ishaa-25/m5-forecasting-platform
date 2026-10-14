@@ -216,7 +216,7 @@ def tune_lgbm(
 # ── CLI ────────────────────────────────────────────────────────────────────────
 if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO, format="%(levelname)s  %(message)s")
-    processed = Path(__file__).resolve().parents[4] / "data" / "processed"
+    processed = Path(__file__).resolve().parents[3] / "data" / "processed"
     feat_path = processed / "m5_features.parquet"
     if not feat_path.exists():
         print("Run `make features` first to build the feature dataset.")

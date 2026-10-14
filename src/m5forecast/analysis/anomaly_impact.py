@@ -139,23 +139,27 @@ def estimate_event_impact(
         )
 
     t = np.arange(len(window_series))
-    post = (window_series.index >= event_date).astype(float).values
+    post = np.asarray(window_series.index >= event_date, dtype=float)
     t_post = t * post
 
     X = np.column_stack([np.ones_like(t), t, post, t_post])
     if control_series is not None:
-        ctrl = control_series.reindex(window_series.index, method="nearest").fillna(0).values
+        ctrl = np.asarray(
+            control_series.reindex(window_series.index, method="nearest").fillna(0),
+            dtype=float,
+        )
         X = np.column_stack([X, ctrl])
 
-    y = window_series.values
-    X_sm = sm.add_constant(X[:, 1:])   # statsmodels adds intercept separately
+    y = np.asarray(window_series, dtype=float)
     model = sm.OLS(y, X).fit()
 
     # post_dummy is the 3rd coefficient (index 2)
     lift_abs = float(model.params[2])
     lift_pct = lift_abs / (window_series.loc[window_series.index < event_date].mean() + 1e-6) * 100
     p_value = float(model.pvalues[2])
-    ci = (float(model.conf_int()[0][2]), float(model.conf_int()[1][2]))
+    conf_int = model.conf_int()   # (n_params, 2) — numpy array in statsmodels 0.14+
+    ci_arr = np.asarray(conf_int)
+    ci = (float(ci_arr[2, 0]), float(ci_arr[2, 1]))
     pre_mean = float(window_series.loc[window_series.index < event_date].mean())
     post_mean = float(window_series.loc[window_series.index >= event_date].mean())
 
@@ -207,3 +211,4 @@ def batch_event_impact(
             logger.warning("Skipping %s: %s", ev["name"], e)
 
     return pd.DataFrame(rows)
+
