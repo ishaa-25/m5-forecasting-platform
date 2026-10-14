@@ -1,0 +1,41 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+.venv/
+venv/
+env/
+
+# Data — never commit raw data
+data/raw/
+data/interim/
+data/processed/
+*.parquet
+*.csv
+*.zip
+
+# ML artefacts
+mlruns/
+*.pkl
+*.joblib
+*.pt
+*.ckpt
+
+# Secrets
+.env
+*.pem
+*.key
+
+# IDE / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Notebooks checkpoints
+.ipynb_checkpoints/
+
+# Streamlit
+.streamlit/secrets.toml
