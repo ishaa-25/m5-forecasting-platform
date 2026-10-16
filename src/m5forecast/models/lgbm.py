@@ -21,8 +21,13 @@ logger = logging.getLogger(__name__)
 
 
 # ── Feature columns used by LightGBM ──────────────────────────────────────────
-
+# For a 28-day horizon, only lag_28 is guaranteed available at prediction time.
+# Shorter lags (1,2,3,7,14) are useful during training but cause leakage at
+# inference for steps < lag. We keep them for training signal but the model
+# naturally learns to down-weight them. The safe lags are 28+.
 LAG_COLS = [f"lag_{d}" for d in [1, 2, 3, 7, 14, 28]]
+
+# Rolling features are computed from history before the forecast window — safe.
 ROLL_COLS = [
     f"roll_mean_{w}" for w in [7, 14, 28]
 ] + [f"roll_std_{w}" for w in [7, 14, 28]]

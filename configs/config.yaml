@@ -40,7 +40,7 @@ lgbm:
 
 # ── MLflow ────────────────────────────────────────────────────────────────────
 mlflow:
-  tracking_uri: "mlruns"
+  tracking_uri: "sqlite:///mlflow.db"
   experiment_name: "m5-forecasting"
 
 # ── Serving ───────────────────────────────────────────────────────────────────

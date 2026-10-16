@@ -35,22 +35,28 @@ ROLL_WINDOWS = [7, 14, 28]
 
 def add_lag_features(df: pd.DataFrame, target: str = "sales") -> pd.DataFrame:
     """Add lag features per series (item × store)."""
-    g = df.groupby(["item_id", "store_id"])[target]
+    g = df.groupby(["item_id", "store_id"], observed=True)[target]
     for lag in LAG_DAYS:
         df[f"lag_{lag}"] = g.shift(lag).astype("float32")
     return df
 
 
 def add_rolling_features(df: pd.DataFrame, target: str = "sales") -> pd.DataFrame:
-    """Add rolling mean and std per series (item × store)."""
-    g = df.groupby(["item_id", "store_id"])[target]
+    """Add rolling mean and std per series (item × store).
+
+    Uses transform so the result stays aligned with the original index —
+    no reset_index needed regardless of pandas version.
+    """
     for w in ROLL_WINDOWS:
-        # shift(1) ensures no same-day leakage
         df[f"roll_mean_{w}"] = (
-            g.shift(1).rolling(w).mean().reset_index(level=[0, 1], drop=True).astype("float32")
+            df.groupby(["item_id", "store_id"], observed=True)[target]
+            .transform(lambda s: s.shift(1).rolling(w).mean())
+            .astype("float32")
         )
         df[f"roll_std_{w}"] = (
-            g.shift(1).rolling(w).std().reset_index(level=[0, 1], drop=True).astype("float32")
+            df.groupby(["item_id", "store_id"], observed=True)[target]
+            .transform(lambda s: s.shift(1).rolling(w).std())
+            .astype("float32")
         )
     return df
 
@@ -81,7 +87,7 @@ def add_calendar_features(df: pd.DataFrame) -> pd.DataFrame:
 
 def add_price_features(df: pd.DataFrame) -> pd.DataFrame:
     """Relative price, price change, and weeks-on-shelf."""
-    g = df.groupby(["item_id", "store_id"])["sell_price"]
+    g = df.groupby(["item_id", "store_id"], observed=True)["sell_price"]
     df["price_lag1"] = g.shift(1).astype("float32")
     df["price_change"] = (df["sell_price"] - df["price_lag1"]).astype("float32")
     df["price_norm"] = (
@@ -93,7 +99,7 @@ def add_price_features(df: pd.DataFrame) -> pd.DataFrame:
         (df["sell_price"] == df["price_lag1"]).astype("int8")
     )
     df["weeks_at_price"] = (
-        df.groupby(["item_id", "store_id"])["price_same_as_lag1"]
+        df.groupby(["item_id", "store_id"], observed=True)["price_same_as_lag1"]
         .transform(lambda s: s.groupby((s != s.shift()).cumsum()).cumcount())
         .astype("int16")
     )

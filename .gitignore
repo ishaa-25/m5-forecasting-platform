@@ -18,6 +18,7 @@ data/processed/
 
 # ML artefacts
 mlruns/
+mlflow.db
 *.pkl
 *.joblib
 *.pt
@@ -39,3 +40,7 @@ Thumbs.db
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Lightning logs
+notebooks/lightning_logs/
+lightning_logs/

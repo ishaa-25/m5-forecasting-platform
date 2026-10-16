@@ -81,7 +81,7 @@ class ChronosForecaster(Forecaster):
 
         context_tensor = torch.tensor(self._context, dtype=torch.float32).unsqueeze(0)
         forecast = self._pipeline.predict(
-            context=context_tensor,
+            inputs=context_tensor,
             prediction_length=horizon,
             num_samples=self.num_samples,
         )
