@@ -61,7 +61,7 @@ class NBEATSForecaster(Forecaster):
         self._series_id = "series_0"
         self._last_series: pd.Series | None = None
 
-    def fit(self, series: pd.Series) -> "NBEATSForecaster":
+    def fit(self, series: pd.Series) -> NBEATSForecaster:
         try:
             from neuralforecast import NeuralForecast  # type: ignore[import]
             from neuralforecast.models import NBEATS  # type: ignore[import]
@@ -118,7 +118,7 @@ class PatchTSTForecaster(Forecaster):
         self._nf: Any | None = None
         self._last_series: pd.Series | None = None
 
-    def fit(self, series: pd.Series) -> "PatchTSTForecaster":
+    def fit(self, series: pd.Series) -> PatchTSTForecaster:
         try:
             from neuralforecast import NeuralForecast  # type: ignore[import]
             from neuralforecast.models import PatchTST  # type: ignore[import]

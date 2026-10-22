@@ -65,7 +65,7 @@ class ChronosForecaster(Forecaster):
                 "Install with: pip install -e '.[advanced]'"
             )
 
-    def fit(self, series: pd.Series) -> "ChronosForecaster":
+    def fit(self, series: pd.Series) -> ChronosForecaster:
         """Chronos is zero-shot — fit just stores the context window."""
         self._context = np.asarray(series, dtype=float)
         if self._pipeline is None:

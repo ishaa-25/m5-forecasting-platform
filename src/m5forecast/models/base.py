@@ -23,7 +23,7 @@ class Forecaster(ABC):
     name: str = "base"
 
     @abstractmethod
-    def fit(self, series: pd.Series) -> "Forecaster":
+    def fit(self, series: pd.Series) -> Forecaster:
         """
         Train the model on historical data.
 

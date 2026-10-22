@@ -2,8 +2,6 @@
 Quick diagnosis of the LightGBM results.
 Helps understand why WAPE is higher than ETS and what to do next.
 """
-import pandas as pd
-import numpy as np
 
 print("=" * 60)
 print("LightGBM Diagnosis — Task 3 Results")

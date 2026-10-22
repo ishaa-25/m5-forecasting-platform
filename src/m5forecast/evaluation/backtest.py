@@ -10,13 +10,13 @@ multiple folds and collects metrics.
 from __future__ import annotations
 
 import logging
+from collections.abc import Iterator
 from dataclasses import dataclass, field
-from typing import Iterator
 
 import numpy as np
 import pandas as pd
 
-from m5forecast.evaluation.metrics import mae, rmse, rmsse, wape, summarise_metrics
+from m5forecast.evaluation.metrics import mae, rmse, rmsse, wape
 
 logger = logging.getLogger(__name__)
 

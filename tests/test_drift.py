@@ -2,13 +2,11 @@
 
 import numpy as np
 import pandas as pd
-import pytest
 
 from m5forecast.monitoring.drift import (
     check_performance_drift,
     feature_drift_report,
     psi,
-    should_retrain,
 )
 
 

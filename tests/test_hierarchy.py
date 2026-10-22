@@ -4,8 +4,8 @@ import pytest
 
 from m5forecast.reconciliation.hierarchy import (
     build_summing_matrix,
-    reconcile_ols,
     reconcile_mint_shrink,
+    reconcile_ols,
 )
 
 

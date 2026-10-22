@@ -1,15 +1,13 @@
 """Tests for conformal prediction intervals."""
 
 import numpy as np
-import pytest
+import pandas as pd
 
+from m5forecast.models.baselines import SeasonalNaive
 from m5forecast.uncertainty.conformal import (
-    AdaptiveConformalForecaster,
     ConformalForecaster,
     calibration_report,
 )
-from m5forecast.models.baselines import SeasonalNaive
-import pandas as pd
 
 
 def _make_series(n: int = 200) -> pd.Series:

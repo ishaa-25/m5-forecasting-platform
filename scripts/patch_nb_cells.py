@@ -48,7 +48,7 @@ for i, cell in enumerate(nb["cells"]):
 with open(nb_path, "w", encoding="utf-8") as f:
     json.dump(nb, f, indent=1, ensure_ascii=False)
 
-print(f"\nSaved. Now in Jupyter:")
+print("\nSaved. Now in Jupyter:")
 print("  1. Close the 02_baselines.ipynb tab entirely")
 print("  2. Reopen it from the file browser")
 print("  3. Kernel -> Restart Kernel")

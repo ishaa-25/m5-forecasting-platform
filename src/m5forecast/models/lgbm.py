@@ -80,7 +80,7 @@ class LGBMForecaster(Forecaster):
     def _available_features(self, df: pd.DataFrame) -> list[str]:
         return [c for c in FEATURE_COLS if c in df.columns]
 
-    def fit(self, df: pd.DataFrame) -> "LGBMForecaster":  # type: ignore[override]
+    def fit(self, df: pd.DataFrame) -> LGBMForecaster:  # type: ignore[override]
         """
         Train on a feature-enriched DataFrame (output of features.py).
 
@@ -189,6 +189,7 @@ def tune_lgbm(
 
     def objective(trial: optuna.Trial) -> float:
         import lightgbm as lgb
+
         from m5forecast.evaluation.metrics import wape
 
         params = {

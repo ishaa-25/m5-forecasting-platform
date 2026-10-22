@@ -36,7 +36,7 @@ class SeasonalNaive(Forecaster):
         self.seasonality = seasonality
         self._last_season: np.ndarray | None = None
 
-    def fit(self, series: pd.Series) -> "SeasonalNaive":
+    def fit(self, series: pd.Series) -> SeasonalNaive:
         values = np.asarray(series, dtype=float)
         self._last_season = values[-self.seasonality:]
         return self
@@ -80,7 +80,7 @@ class ETSForecaster(Forecaster):
         self._fitted = None
         self._residual_std: float = 0.0
 
-    def fit(self, series: pd.Series) -> "ETSForecaster":
+    def fit(self, series: pd.Series) -> ETSForecaster:
         from statsmodels.tsa.holtwinters import ExponentialSmoothing  # lazy import
 
         values = np.asarray(series, dtype=float)
@@ -157,7 +157,7 @@ class ARIMAForecaster(Forecaster):
                     pass
         return best_order
 
-    def fit(self, series: pd.Series) -> "ARIMAForecaster":
+    def fit(self, series: pd.Series) -> ARIMAForecaster:
         from statsmodels.tsa.arima.model import ARIMA  # lazy import
 
         values = np.asarray(series, dtype=float)

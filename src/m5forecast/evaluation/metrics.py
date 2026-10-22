@@ -12,7 +12,6 @@ from __future__ import annotations
 import numpy as np
 import pandas as pd
 
-
 # ── point forecast metrics ─────────────────────────────────────────────────────
 
 def wape(y_true: np.ndarray, y_pred: np.ndarray) -> float:

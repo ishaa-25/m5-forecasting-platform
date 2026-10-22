@@ -44,7 +44,7 @@ class ConformalForecaster:
         self,
         y_cal_true: np.ndarray,
         y_cal_pred: np.ndarray,
-    ) -> "ConformalForecaster":
+    ) -> ConformalForecaster:
         """
         Compute non-conformity scores on a calibration split.
 

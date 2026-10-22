@@ -2,7 +2,6 @@
 
 import numpy as np
 import pandas as pd
-import pytest
 
 from m5forecast.evaluation.backtest import Backtester, RollingOriginSplitter
 from m5forecast.models.baselines import SeasonalNaive

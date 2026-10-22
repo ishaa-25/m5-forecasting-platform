@@ -172,7 +172,7 @@ def reconcile_with_hierarchicalforecast(
     """
     try:
         from hierarchicalforecast.core import HierarchicalReconciliation  # type: ignore[import]
-        from hierarchicalforecast.methods import MinTrace, BottomUp, TopDown  # type: ignore[import]
+        from hierarchicalforecast.methods import BottomUp, MinTrace, TopDown  # type: ignore[import]
     except ImportError:
         raise ImportError(
             "hierarchicalforecast is required. Install with: pip install -e '.[advanced]'"

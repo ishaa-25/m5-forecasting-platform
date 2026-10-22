@@ -13,9 +13,8 @@ Install with: pip install -e ".[llm]"
 
 from __future__ import annotations
 
-import os
 import logging
-from pathlib import Path
+import os
 from string import Template
 
 import numpy as np

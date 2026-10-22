@@ -7,7 +7,6 @@ from m5forecast.evaluation.metrics import (
     coverage,
     interval_width,
     mae,
-    mean_pinball_loss,
     pinball_loss,
     rmse,
     rmsse,

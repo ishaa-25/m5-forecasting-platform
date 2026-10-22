@@ -78,7 +78,7 @@ def _load_model(model_name: str) -> Any:
         import mlflow
 
         mlflow.set_tracking_uri(CONFIG["mlflow"]["tracking_uri"])
-        client = mlflow.tracking.MlflowClient()
+  
         # Try to load the latest production model
         model_uri = f"models:/{model_name}/Production"
         loaded = mlflow.pyfunc.load_model(model_uri)

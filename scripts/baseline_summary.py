@@ -14,7 +14,7 @@ print(df.round(4).to_string())
 print()
 
 avgs = df['avg']
-print(f"Average WAPE across 3 stores:")
+print("Average WAPE across 3 stores:")
 for model in ['ets_add','seasonal_naive','arima_211']:
     print(f"  {model:20s}: {avgs[model]:.4f}")
 

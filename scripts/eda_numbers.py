@@ -1,5 +1,4 @@
 import duckdb
-import pandas as pd
 
 con = duckdb.connect()
 parquet = "data/processed/m5_long.parquet"
