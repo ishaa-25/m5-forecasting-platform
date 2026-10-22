@@ -1,7 +1,7 @@
 # M5 Forecasting Platform
 A Streamlit-powered interface providing hierarchical drill-downs, probabilistic forecast fans (with conformal intervals), and LLM-driven explanations.
 
-![M5 Dashboard Overview](Screenshot (134).png)
+![M5 Dashboard Overview](dashboard_screenshot.png)
 > Probabilistic, hierarchical forecasting on the M5 Walmart dataset —
 > built as a small production system.
 
